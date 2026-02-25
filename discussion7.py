@@ -31,8 +31,23 @@ def load_listings(f):
     full_path = os.path.join(base_path, f)
 
     # TODO: Read the CSV using csv.reader and convert it to a list a dictionaries
-    pass
+    
+    with open(full_path) as f:
+        reader = csv.reader(f) # pass the file object to csv.reader
 
+        header = next(reader) # read the header row
+
+        all_listings = [] # empty list to store all the listings as dictionaries 
+
+        for row in reader: # loop through each row in the CSV after the header
+            item = {}
+            for i, column in enumerate(header): # loop through each column in the header
+                item[column] = row[i] # create a key-value pair in the item dictionary where the key is the column name and the value is the corresponding value from the row
+            all_listings.append(item) # add the item dictionary to the list of listings
+
+        return all_listings # return the list of dictionaries representing the listings
+        
+    
 ###############################################################################
 ##### TASK 2: CALCULATION FUNCTION (single calculation)
 ###############################################################################
