@@ -5,6 +5,7 @@ import csv
 ###############################################################################
 ##### TASK 1: CSV READER
 ###############################################################################
+
 def load_listings(f):
     """
     Read the Airbnb listings CSV and return a list of records.
@@ -29,7 +30,6 @@ def load_listings(f):
     # This opens the CSV and saves it as a list of lists
     base_path = os.path.abspath(os.path.dirname(__file__))
     full_path = os.path.join(base_path, f)
-
     # TODO: Read the CSV using csv.reader and convert it to a list a dictionaries
     
     with open(full_path) as f:
@@ -50,6 +50,7 @@ def load_listings(f):
 ###############################################################################
 ##### TASK 2: CALCULATION FUNCTION (single calculation)
 ###############################################################################
+
 def calculate_avg_price_by_neighbourhood_group_and_room(listings):
     """
     Calculate the average nightly price for each (neighbourhood_group, room_type) pair.
@@ -91,6 +92,7 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
 ###############################################################################
 ##### TASK 3: CSV WRITER
 ###############################################################################
+
 def write_summary_csv(out_filename, avg_prices):
     """
     Write the summary statistics to a CSV file.
@@ -118,6 +120,7 @@ def write_summary_csv(out_filename, avg_prices):
 ###############################################################################
 ##### UNIT TESTS (Do not modify the code below!)
 ###############################################################################
+
 class TestAirbnbListings(unittest.TestCase):
     def setUp(self):
         base_path = os.path.abspath(os.path.dirname(__file__))
@@ -165,7 +168,6 @@ class TestAirbnbListings(unittest.TestCase):
             # Verify header
             self.assertEqual(reader.fieldnames, ['neighbourhood_group', 'room_type', 'average_price'])
         
-
 def main():
     unittest.main(verbosity=2)
 
