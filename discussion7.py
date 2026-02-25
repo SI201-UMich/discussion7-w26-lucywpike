@@ -47,7 +47,6 @@ def load_listings(f):
 
         return all_listings # return the list of dictionaries representing the listings
         
-    
 ###############################################################################
 ##### TASK 2: CALCULATION FUNCTION (single calculation)
 ###############################################################################
@@ -66,9 +65,28 @@ def calculate_avg_price_by_neighbourhood_group_and_room(listings):
         dict mapping (neighbourhood_group, room_type) -> average_price (float)
         e.g. { ('Downtown', 'Entire home/apt'): 123.45, ... }
     """
-    pass
+    price_sum = {}
+    price_counts = {}
 
+    for listing in listings:
+        neighbourhood_group = listing["neighbourhood_group"] # get the neighbourhood group from the listing 
+        room_type = listing["room_type"] # get the room type from the listing
+        price = float(listing["price"]) # get the price from the listing and convert it to a float
 
+        listing_key = (neighbourhood_group, room_type) # create a tuple key for the dictionary using the neighbourhood group and room type
+
+        if listing_key not in price_sum: # if this key is not already in the price_sum dictionary, initialize it and the count for this key
+            price_sum[listing_key] = 0 
+            price_counts[listing_key] = 0
+        price_sum[listing_key] += price # add the price to the sum for this key
+        price_counts[listing_key] += 1 # increment the count for this key
+
+    price_average = {} # create a new dictionary to store the average prices
+
+    for listing_key in price_sum: # loop through each key in the price_sum dictionary
+        price_average[listing_key] = price_sum[listing_key] / price_counts[listing_key] # calculate the average price for this key and store it in the averages dictionary
+
+    return price_average # return the dictionary mapping (neighbourhood_group, room_type) to average price 
 
 ###############################################################################
 ##### TASK 3: CSV WRITER
